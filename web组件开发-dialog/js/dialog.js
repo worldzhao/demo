@@ -34,11 +34,11 @@
         // 创建基本dom结构
         this.body = $('body');
         // 创建遮罩层
-        this.mask = $('<div class="web组件开发-dialog-container">');
-        this.dialog = $('<div class="web组件开发-dialog-window">');
-        this.dialogHeader = $('<div class="web组件开发-dialog-header">');
-        this.dialogContent = $('<div class="web组件开发-dialog-content">');
-        this.dialogFooter = $('<div class="web组件开发-dialog-footer">');
+        this.mask = $('<div class="dialog-container">');
+        this.dialog = $('<div class="dialog-window">');
+        this.dialogHeader = $('<div class="dialog-header">');
+        this.dialogContent = $('<div class="dialog-content">');
+        this.dialogFooter = $('<div class="dialog-footer">');
         // 渲染dom 设计模式：单例模式
         if (instance) {
             this.removeDialog();
@@ -108,7 +108,7 @@
             }
             // 此处移除了dom  创建的对象自动回收，记得销毁引用，思考：单例模式
             instance = null;
-            $('.web组件开发-dialog-container').remove();
+            $('.dialog-container').remove();
         },
         createBtns: function (btns) {
             var _this = this;
