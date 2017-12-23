@@ -1,3 +1,5 @@
+请在chrome浏览器移动端调试工具下预览
+
 [点此预览](http://blog.hackerwen.tech/demo/web%E7%BB%84%E4%BB%B6%E5%BC%80%E5%8F%91-dialog/)
 
 依赖：zepto.js[包括touch部分]
