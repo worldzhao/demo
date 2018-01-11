@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+            background-color: #000;
+            cursor: none;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+  var canvas = document.getElementById("canvas"),
+    context = canvas.getContext("2d"),
+    WIDTH,
+    HEIGHT,
+    stars = [],
+    initRoundCount = 80;
+
+  WIDTH = document.documentElement.clientWidth;
+  HEIGHT = document.documentElement.clientHeight;
+
+  canvas.width = WIDTH;
+  canvas.height = HEIGHT;
+
+
+  function Round_item(id, x, y) {
+    this.id = id;
+    this.x = x;
+    this.y = y;
+    this.radius = Math.random() * 2 + 1;
+    var alpha = (Math.floor(Math.random() * 10) + 1) / 10 / 2;
+    this.color = "rgba(255,255,255," + alpha + ")";
+  }
+
+  Round_item.prototype.draw = function () {
+    // 配置画笔
+    context.fillStyle = this.color;
+    context.shadowBlur = this.radius * 2;
+    // 绘制路径
+    context.beginPath();
+    context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    context.closePath();
+    // 填充
+    context.fill();
+  };
+
+  Round_item.prototype.move = function () {
+    // 上升
+    this.y -= 0.15;
+    //如果上升至窗口外-10px 返回底部
+    if (this.y < -10) {
+      this.y = HEIGHT + 10;
+    }
+    this.draw();
+  };
+
+  function animate() {
+    context.clearRect(0, 0, WIDTH, HEIGHT);
+    for (var i = 0; i < initRoundCount; i++) {
+      stars[i].move();
+    }
+    requestAnimationFrame(animate);
+  }
+
+  function init() {
+    for (var i = 0; i < initRoundCount; i++) {
+      stars[i] = new Round_item(i, Math.random() * WIDTH, Math.random() * HEIGHT);
+      stars[i].draw();
+    }
+    animate();
+  }
+
+  init();
+</script>
+</body>
+</html>
