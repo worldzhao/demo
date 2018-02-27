@@ -9,17 +9,21 @@ Router.prototype.on = function(path, callback) {
   this.task[path].push(callback);
 };
 
-Router.prototype.emit = function() {
-  var hash = location.href.split("#")[1];
-  if (this.task[hash]) {
-    this.task[hash].forEach(cb => cb());
+Router.prototype.emit = function(path) {
+  if (this.task[path]) {
+    this.task[path].forEach(cb => cb());
   }
 };
 
 Router.prototype.init = function() {
   var self = this;
+  window.addEventListener("load", function() {
+    var hash = location.href.split("#")[1];
+    self.emit(hash);
+  });
   window.addEventListener("hashchange", function() {
-    self.emit();
+    var hash = location.href.split("#")[1];
+    self.emit(hash);
   });
 };
 
