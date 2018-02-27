@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .WB_arrow{width: 200px; height: 200px; border: 2px solid blue; position: relative; margin: 100px auto;}
+    .WB_arrow:before,.WB_arrow:after{ content: ""; width: 0; height: 0; position: absolute;display: block; border-width: 20px; border-style: solid;  }
+    .WB_arrow:before{right: -40px; top: 40px; border-color: transparent transparent transparent blue;}
+    .WB_arrow:after{right: -38px; top: 40px; border-color: transparent transparent transparent white;}
+    </style>
+</head>
+<body>
+    <div class="WB_arrow"></div>
+</body>
+</html>

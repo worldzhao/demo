@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>双飞翼布局</title>
 	<style>
-	*{padding:0;margin:0;}
-		.container{
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		.container {
 			overflow: hidden;
 		}
-		.main, .left, .right {
+
+		.main,
+		.left,
+		.right {
 			min-height: 300px;
 			float: left;
 		}
+
 		.main {
 			width: 100%;
 			background-color: black;
 		}
+
 		.main-inner {
 			margin-left: 200px;
 			margin-right: 220px;
 			min-height: 300px;
 		}
+
 		.left {
 			width: 200px;
 			margin-left: -100%;
 			background-color: yellow;
 		}
+
 		.right {
 			width: 220px;
 			margin-left: -220px;
@@ -34,6 +46,7 @@
 		}
 	</style>
 </head>
+
 <body>
 	<div class="container">
 		<div class="main">
@@ -43,4 +56,5 @@
 		<div class="right"></div>
 	</div>
 </body>
+
 </html>
