@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #mydiv {
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mydiv"></div>
+    <script>
+        function debounce(fn) {
+            var timer
+            var _self = fn
+            return function () {
+                clearTimeout(timer)
+                var args = arguments // fn所需要的参数
+                var _me = this // 当前的this
+                timer = setTimeout(function () {
+                    _self.call(_me, args)
+                }, 200)
+            }
+        }
+
+        function resizeDiv() {
+            var div = document.getElementById('mydiv')
+            div.style.height = div.offsetWidth + 'px'
+            console.log('resize')
+        }
+
+        window.onresize = debounce(resizeDiv)</script>
+</body>
+
+</html>
