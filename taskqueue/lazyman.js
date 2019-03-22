@@ -1,70 +1,88 @@
-function _LazyMan(name) {
-  const self = this;
-  this.taskqueue = [];
-  console.log(`Hi, This is ${name}`);
-  setTimeout(() => {
-    self.next();
-  }, 0);
+class _LazyMan {
+  constructor(name) {
+    this.name = name
+    this.queue = []
+    this.start()
+  }
+
+  start() {
+    this.greet()
+    setTimeout(() => {
+      this.next()
+    }, 0)
+  }
+
+  next() {
+    const fn = this.queue.shift()
+    fn && fn()
+  }
+
+  greet() {
+    const fn = () => {
+      console.log(`Hi, This is ${this.name}`)
+      this.next()
+    }
+    this.queue.push(fn)
+    return this
+  }
+
+  eat(name) {
+    const fn = () => {
+      console.log(`Eat ${name}~`)
+      this.next()
+    }
+    this.queue.push(fn)
+    return this
+  }
+
+  sleep(s) {
+    const fn = () => {
+      setTimeout(() => {
+        console.log(`Wake up after ${s}`)
+        this.next()
+      }, s * 1000)
+    }
+    this.queue.push(fn)
+    return this
+  }
+
+  sleepFirst(s) {
+    const fn = () => {
+      setTimeout(() => {
+        console.log(`Wake up after ${s}`)
+        this.next()
+      }, s * 1000)
+    }
+    this.queue.unshift(fn)
+    return this
+  }
 }
 
-_LazyMan.prototype.next = function() {
-  const fn = this.taskqueue.shift();
-  fn && fn();
-};
-
-_LazyMan.prototype.sleep = function(time) {
-  const self = this;
-  const fn = function() {
-    setTimeout(() => {
-      console.log(`Wake up after ${time}`);
-      self.next();
-    }, time * 1000);
-  };
-  this.taskqueue.push(fn);
-  return this;
-};
-
-_LazyMan.prototype.eat = function(name) {
-  const self = this;
-  const fn = function() {
-    console.log(`Eat ${name}`);
-    self.next();
-  };
-  this.taskqueue.push(fn);
-  return this;
-};
-
-_LazyMan.prototype.sleepFirst = function(time) {
-  const self = this;
-  const fn = function() {
-    setTimeout(() => {
-      console.log(`Wake up after ${time}`);
-      self.next();
-    }, time * 1000);
-  };
-  this.taskqueue.unshift(fn);
-  return this;
-};
-
 function LazyMan(name) {
-  return new _LazyMan(name);
+  return new _LazyMan(name)
 }
 
 // 实现一个LazyMan，可以按照以下方式调用:
-LazyMan("Hank");
+LazyMan('Hank')
 // 输出: Hi! This is Hank!
-LazyMan("Hank").sleep(10).eat("dinner");
+LazyMan('Hank')
+  .sleep(10)
+  .eat('dinner')
 // Hi! This is Hank!
 // ---等待10秒..
 // Wake up after 10
 // Eat dinner~
 
-LazyMan("Hank").eat("dinner").eat("supper");
+LazyMan('Hank')
+  .eat('dinner')
+  .eat('supper')
 // 输出:
 // Hi This is Hank!
 // Eat dinner~
 // Eat supper~
-LazyMan("Hank").sleepFirst(5).eat("supper");
+LazyMan('Hank')
+  .sleepFirst(5)
+  .eat('supper')
 // 输出:
 // 等待5秒
 // Wake up after 5
