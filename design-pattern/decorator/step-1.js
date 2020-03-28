@@ -7,16 +7,16 @@ class Model1 {
     return [
       {
         id: 1,
-        name: 'Niko'
+        name: "Niko",
       },
       {
         id: 2,
-        name: 'Bellic'
-      }
-    ]
+        name: "Bellic",
+      },
+    ];
   }
 }
 
-console.log(new Model1().getData())
+console.log(new Model1().getData());
 
-console.log(Model1.prototype.getData())
+console.log(Model1.prototype.getData());
