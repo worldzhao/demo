@@ -1,56 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <style>
-        #mydiv {
-            background-color: #000;
-        }
+      #mydiv {
+        background-color: #000;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="mydiv"></div>
     <script>
-        function throttle(fn, interval) {
-            var _self = fn // 保存需要被延迟执行的函数引用
-            var firstTime = true // 是否初次调用
-            var timer // 定时器
+      function throttle(fn, interval) {
+        var _self = fn; // 保存需要被延迟执行的函数引用
+        var firstTime = true; // 是否初次调用
+        var timer; // 定时器
 
-            return function () {
-                var args = arguments
-                var _me = this
-                if (firstTime) {
-                    // 如果是第一次调用不需要延迟执行
-                    _self.call(_me, args)
-                }
+        return function () {
+          var args = arguments;
+          var _me = this;
+          if (firstTime) {
+            // 如果是第一次调用不需要延迟执行
+            _self.call(_me, args);
+          }
 
-                if (timer) {
-                    // 如果定时器还在，说明前一次延迟执行还没有完成
-                    return false
-                }
+          if (timer) {
+            // 如果定时器还在，说明前一次延迟执行还没有完成
+            return false;
+          }
 
-                timer = setTimeout(function () {
-                    // 延迟一段时间执行
-                    clearTimeout(timer) // 清除定时器 避免下一次return false
-                    timer = null
-                    _self.call(_me, args)
-                }, interval || 500)
-            }
-        }
+          timer = setTimeout(function () {
+            // 延迟一段时间执行
+            clearTimeout(timer); // 清除定时器 避免下一次return false
+            timer = null;
+            _self.call(_me, args);
+          }, interval || 500);
+        };
+      }
 
-        function resizeDiv() {
-            var div = document.getElementById('mydiv')
-            div.style.height = div.offsetWidth + 'px'
-            console.log('resize')
-        }
+      function resizeDiv() {
+        var div = document.getElementById("mydiv");
+        div.style.height = div.offsetWidth + "px";
+        console.log("resize");
+      }
 
-        window.onresize = throttle(resizeDiv)
+      window.onresize = throttle(resizeDiv);
     </script>
-</body>
-
+  </body>
 </html>

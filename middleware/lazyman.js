@@ -1,45 +1,41 @@
 function _LazyMan(name) {
-  const self = this;
   this.taskqueue = [];
   console.log(`Hi, This is ${name}`);
   setTimeout(() => {
-    self.next();
+    this.next();
   }, 0);
 }
 
-_LazyMan.prototype.next = function() {
+_LazyMan.prototype.next = function () {
   const fn = this.taskqueue.shift();
   fn && fn();
 };
 
-_LazyMan.prototype.sleep = function(time) {
-  const self = this;
-  const fn = function() {
+_LazyMan.prototype.sleep = function (time) {
+  const fn = () => {
     setTimeout(() => {
       console.log(`Wake up after ${time}`);
-      self.next();
+      this.next();
     }, time * 1000);
   };
   this.taskqueue.push(fn);
   return this;
 };
 
-_LazyMan.prototype.eat = function(name) {
-  const self = this;
-  const fn = function() {
+_LazyMan.prototype.eat = function (name) {
+  const fn = () => {
     console.log(`Eat ${name}`);
-    self.next();
+    this.next();
   };
   this.taskqueue.push(fn);
   return this;
 };
 
-_LazyMan.prototype.sleepFirst = function(time) {
-  const self = this;
-  const fn = function() {
+_LazyMan.prototype.sleepFirst = function (time) {
+  const fn = () => {
     setTimeout(() => {
       console.log(`Wake up after ${time}`);
-      self.next();
+      this.next();
     }, time * 1000);
   };
   this.taskqueue.unshift(fn);

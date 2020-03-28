@@ -1,10 +1,11 @@
-function compose(arr) {
-  return function(ctx) {
-    const next = function() {
-      const fn = arr.shift();
+function compose(fns) {
+  let name = 1;
+  return function (ctx) {
+    const next = function () {
+      const fn = fns.shift();
       fn && fn(ctx, next);
     };
-    const fn = arr.shift();
+    const fn = arrs.shift();
     fn && fn(ctx, next);
   };
 }
@@ -17,7 +18,7 @@ function fun1(ctx, next) {
 function fun2(ctx, next) {
   ctx.count++;
   console.log(ctx.count);
-  setTimeout(function() {
+  setTimeout(function () {
     next();
   }, 1000);
 }

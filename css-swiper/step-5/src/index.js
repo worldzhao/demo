@@ -1,25 +1,25 @@
-;(function(w, $) {
+(function (w, $) {
   function CubeSwiper(config) {
     this.config = {
-      appendElem: 'body',
-      imgArr: ['', '', '', '', '', '']
-    }
+      appendElem: "body",
+      imgArr: ["", "", "", "", "", ""],
+    };
     if (config && $.isPlainObject(config)) {
-      $.extend(this.config, config)
+      $.extend(this.config, config);
     }
-    this.init()
+    this.init();
   }
 
   CubeSwiper.prototype = {
     constructor: CubeSwiper,
-    init: function() {
-      this.render()
-      this.bindEvent()
+    init: function () {
+      this.render();
+      this.bindEvent();
     },
-    render: function() {
-      var config = this.config
-      var root = config.appendElem
-      var imgArr = config.imgArr
+    render: function () {
+      var config = this.config;
+      var root = config.appendElem;
+      var imgArr = config.imgArr;
       var str = `<div class="cube-container">
       <div class="cube-wrap">
         <div class="cube">
@@ -55,69 +55,65 @@
         <span class="indicator" data-index="4"></span>
         <span class="indicator" data-index="5"></span>
       </div>
-    </div>`
-      var cube = $(str)
-      $(root).append(cube)
+    </div>`;
+      var cube = $(str);
+      $(root).append(cube);
     },
-    bindEvent: function() {
-      var checkActive = function() {
-        var indexStr = Number(
-          $('.cube')
-            .attr('class')
-            .slice(-1)
-        )
-        $('.indicator').each(function(i, e) {
-          var $e = $(e)
-          $e.removeClass('active')
-          i + 1 === indexStr && $e.addClass('active')
-        })
-      }
+    bindEvent: function () {
+      var checkActive = function () {
+        var indexStr = Number($(".cube").attr("class").slice(-1));
+        $(".indicator").each(function (i, e) {
+          var $e = $(e);
+          $e.removeClass("active");
+          i + 1 === indexStr && $e.addClass("active");
+        });
+      };
 
       var rotateMap = [
-        'rotate1',
-        'rotate2',
-        'rotate3',
-        'rotate4',
-        'rotate5',
-        'rotate6'
-      ]
+        "rotate1",
+        "rotate2",
+        "rotate3",
+        "rotate4",
+        "rotate5",
+        "rotate6",
+      ];
 
-      var mapIndex = 0
-      $('.cube').addClass(rotateMap[mapIndex])
-      checkActive()
+      var mapIndex = 0;
+      $(".cube").addClass(rotateMap[mapIndex]);
+      checkActive();
 
-      $('.arrows .pre-arrow').click(function() {
-        $('.cube').removeClass(rotateMap[mapIndex])
+      $(".arrows .pre-arrow").click(function () {
+        $(".cube").removeClass(rotateMap[mapIndex]);
         if (mapIndex === 0) {
-          mapIndex = rotateMap.length - 1
-          $('.cube').addClass(rotateMap[mapIndex])
+          mapIndex = rotateMap.length - 1;
+          $(".cube").addClass(rotateMap[mapIndex]);
         } else {
-          mapIndex -= 1
-          $('.cube').addClass(rotateMap[mapIndex])
+          mapIndex -= 1;
+          $(".cube").addClass(rotateMap[mapIndex]);
         }
-        checkActive()
-      })
+        checkActive();
+      });
 
-      $('.arrows .next-arrow').click(function() {
-        $('.cube').removeClass(rotateMap[mapIndex])
+      $(".arrows .next-arrow").click(function () {
+        $(".cube").removeClass(rotateMap[mapIndex]);
         if (mapIndex === rotateMap.length - 1) {
-          mapIndex = 0
-          $('.cube').addClass(rotateMap[mapIndex])
+          mapIndex = 0;
+          $(".cube").addClass(rotateMap[mapIndex]);
         } else {
-          mapIndex += 1
-          $('.cube').addClass(rotateMap[mapIndex])
+          mapIndex += 1;
+          $(".cube").addClass(rotateMap[mapIndex]);
         }
-        checkActive()
-      })
+        checkActive();
+      });
 
-      $('.indicators .indicator').click(function() {
-        var $this = $(this)
-        $('.cube').removeClass(rotateMap[mapIndex])
-        mapIndex = $this.data('index')
-        $('.cube').addClass(rotateMap[mapIndex])
-        checkActive()
-      })
-    }
-  }
-  window.CubeSwiper = CubeSwiper
-})(window, jQuery)
+      $(".indicators .indicator").click(function () {
+        var $this = $(this);
+        $(".cube").removeClass(rotateMap[mapIndex]);
+        mapIndex = $this.data("index");
+        $(".cube").addClass(rotateMap[mapIndex]);
+        checkActive();
+      });
+    },
+  };
+  window.CubeSwiper = CubeSwiper;
+})(window, jQuery);

@@ -104,7 +104,7 @@
 .arrows span::before {
   border-bottom: 4px solid #111;
   border-right: 4px solid #111;
-  content: '';
+  content: "";
   display: block;
   height: 25%;
   left: 50%;

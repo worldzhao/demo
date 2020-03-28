@@ -1,60 +1,58 @@
 <!DOCTYPE html>
 <html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>双飞翼布局</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
 
-<head lang="en">
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>双飞翼布局</title>
-	<style>
-		* {
-			padding: 0;
-			margin: 0;
-		}
+      .container {
+        overflow: hidden;
+      }
 
-		.container {
-			overflow: hidden;
-		}
+      .main,
+      .left,
+      .right {
+        min-height: 300px;
+        float: left;
+      }
 
-		.main,
-		.left,
-		.right {
-			min-height: 300px;
-			float: left;
-		}
+      .main {
+        width: 100%;
+        background-color: black;
+      }
 
-		.main {
-			width: 100%;
-			background-color: black;
-		}
+      .main-inner {
+        margin-left: 200px;
+        margin-right: 220px;
+        min-height: 300px;
+      }
 
-		.main-inner {
-			margin-left: 200px;
-			margin-right: 220px;
-			min-height: 300px;
-		}
+      .left {
+        width: 200px;
+        margin-left: -100%;
+        background-color: yellow;
+      }
 
-		.left {
-			width: 200px;
-			margin-left: -100%;
-			background-color: yellow;
-		}
+      .right {
+        width: 220px;
+        margin-left: -220px;
+        background-color: red;
+      }
+    </style>
+  </head>
 
-		.right {
-			width: 220px;
-			margin-left: -220px;
-			background-color: red;
-		}
-	</style>
-</head>
-
-<body>
-	<div class="container">
-		<div class="main">
-			<div class="main-inner"></div>
-		</div>
-		<div class="left"></div>
-		<div class="right"></div>
-	</div>
-</body>
-
+  <body>
+    <div class="container">
+      <div class="main">
+        <div class="main-inner"></div>
+      </div>
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
+  </body>
 </html>
